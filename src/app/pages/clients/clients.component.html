@@ -1,0 +1,68 @@
+<h1> Customers </h1>
+<hr>
+
+<div class="row">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary" routerLink="/client/new">
+            <i class="fa fa-plus"></i>
+            Agregar
+        </button>
+    </div>
+</div>
+
+<div class="container mt-5">
+<table *ngIf="!loading && dataClients.length > 0" id="clientsTable" datatable class="table table-striped table-bordered table-hover" id="clientsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataClients; let i = index">
+        <td>{{ data.idClient }}</td>
+        <td>{{ data.firstname }}</td>
+        <td>{{ data.lastname }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.phone }}</td>
+        <td>
+            <label *ngIf="data.status" class="badge text-bg-success" for="">Active</label>
+            <label *ngIf="!data.status" class="badge text-bg-warning"  for="">Inactive</label>
+
+        </td>
+        <td>
+            <button  class="btn btn-info m-2"
+            [routerLink]="['/client', data.idClient]">
+                <i class=" fa fa-pen"></i>
+            </button>
+            <button class="btn btn-danger" (click)="deleteClient(data, i)">
+                <i class="fa fa-trash"></i>
+            </button>
+            
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!loading && dataClients.length === 0" class="alert alert-warning text-center mt-3">
+    <h4 class="alert-heading">No found customers</h4>
+    <p>
+        <i class="fa fa-exclamation  fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="loading" class="alert alert-info text-center mt-3">
+    <h4 class="alert-heading">Loading</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Wait please!
+    </p>
+</div>

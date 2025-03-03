@@ -1,0 +1,99 @@
+<h1>Client <small>Name</small></h1>
+<hr>
+
+<div class="row text-right">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-danger"
+                routerLink="/clients">
+            <i class="fa fa-arrow-left"></i>
+            Back
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="saveClient( f )"
+            #f="ngForm" >
+            <div class="mb-3">
+                <label for="idClient" class="form-label">ID Client</label>
+                <input  type="text" 
+                        class="form-control" 
+                        placeholder="ID Client" 
+                        disabled="disabled"
+                        [(ngModel)]="client.idClient"
+                        name="idClient">
+              </div>
+            <div class="mb-3">
+              <label for="firstname" class="form-label">First Name</label>
+              <input    type="text" 
+                        class="form-control" 
+                        [(ngModel)]="client.firstname" 
+                        name="firstname"
+                        [class.is-invalid]="firstname.invalid && firstname.touched"
+                        placeholder="Ingresa tu nombre" 
+                        required
+                        #firstname="ngModel">
+                <small *ngIf="firstname.invalid && firstname.touched"
+                        class="form-text text-danger"> First name required.</small>
+            </div>
+            <div class="mb-3">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input  type="text" 
+                        class="form-control" 
+                        [(ngModel)]="client.lastname" 
+                        name="lastname" 
+                        placeholder="Ingresa tu nombre" 
+                        required 
+                        #lastname="ngModel"
+                        [class.is-invalid]="lastname.invalid && lastname.touched"
+                >
+                <small *ngIf="lastname.invalid && lastname.touched"
+                        class="form-text text-danger"> Last name required.</small>
+              </div>
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" 
+                    class="form-control" 
+                    [(ngModel)]="client.email"  
+                    name="email" 
+                    placeholder="Ingresa tu correo" required 
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    [class.is-invalid]="email.invalid && email.touched"
+                    #email="ngModel">
+                    <small *ngIf="email.invalid && email.touched"
+                        class="form-text text-danger"> Email required.</small>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input  type="text" 
+                        class="form-control" 
+                        [(ngModel)]="client.phone" 
+                        name="phone" 
+                        placeholder="Ingresa tu correo">
+            </div>
+            <div class="mb-3">
+                <label for="">Status</label>
+                <br>
+                <button *ngIf="client.status" 
+                (click)="client.status = false"    
+                class="btn btn-outline-success w-50" type="button">
+                    <i class="fa fa-smile-wink"></i>
+                    Active
+                </button>
+                <button *ngIf="!client.status" 
+                (click)="client.status = true"  class="btn btn-outline-danger w-50" type="button">
+                    <i class="fa fa-dizzy"></i>
+                    Inactive
+                </button>
+            </div>
+
+            <div class="mb-3 text-center">      
+                <button type="submit" class="btn btn-primary w-25">
+                <i class="fa fa-save"></i>
+                Add User</button>
+            </div>
+          </form>
+    </div>
+</div>
