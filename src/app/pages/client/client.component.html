@@ -1,4 +1,4 @@
-<h1>Client <small>Name</small></h1>
+<h1>Client Information</h1>
 <hr>
 
 <div class="row text-right">
@@ -31,7 +31,7 @@
                         [(ngModel)]="client.firstname" 
                         name="firstname"
                         [class.is-invalid]="firstname.invalid && firstname.touched"
-                        placeholder="Ingresa tu nombre" 
+                        placeholder="Enter your First name" 
                         required
                         #firstname="ngModel">
                 <small *ngIf="firstname.invalid && firstname.touched"
@@ -43,7 +43,7 @@
                         class="form-control" 
                         [(ngModel)]="client.lastname" 
                         name="lastname" 
-                        placeholder="Ingresa tu nombre" 
+                        placeholder="Enter your Last Name" 
                         required 
                         #lastname="ngModel"
                         [class.is-invalid]="lastname.invalid && lastname.touched"
@@ -58,7 +58,7 @@
                     class="form-control" 
                     [(ngModel)]="client.email"  
                     name="email" 
-                    placeholder="Ingresa tu correo" required 
+                    placeholder="Enter your Email" required 
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                     [class.is-invalid]="email.invalid && email.touched"
                     #email="ngModel">
